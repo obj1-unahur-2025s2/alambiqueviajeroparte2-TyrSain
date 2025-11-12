@@ -1,3 +1,4 @@
+import carrera.*
 import elAlambiqueViajero.*
 test "luke cuenta cuando va de viaje"{
     luke.viajar(paris)
@@ -62,3 +63,25 @@ test "luke viaja a hurlingham en el convertible convertido en chatarra" {
   assert.equals(5,chatarra.cañones())
 
   }
+
+test "La carrera se establece en paris y se arma la lista de vehiculos que pueden viajar: " {
+    inscripcion.cambiarCiudadA_(paris)
+    inscripcion.puedeCompetir(alambiqueVeloz)
+    convertible.convertir(alambiqueVeloz)
+    inscripcion.puedeCompetir(convertible)
+    inscripcion.puedeCompetir(chatarra)
+
+    assert.equals([alambiqueVeloz, convertible, chatarra], inscripcion.vehiculosInscriptos())
+}
+
+test "La ciudad cambia a Bueno Aires y cambia la lista" {
+    inscripcion.cambiarCiudadA_(paris)
+    inscripcion.puedeCompetir(alambiqueVeloz)
+    convertible.convertir(alambiqueVeloz)
+    inscripcion.puedeCompetir(convertible)
+    chatarra.desgaste()
+    inscripcion.puedeCompetir(chatarra)
+    inscripcion.cambiarCiudadA_(buenosAires)
+
+    assert.equals([alambiqueVeloz, convertible], inscripcion.vehiculosInscriptos())
+}
